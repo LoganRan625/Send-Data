@@ -12,8 +12,6 @@ try:
 except:
 	filename = "file.txt"
 
-print(filename)
-
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 	print(f'[LISTENING] SERVER: {HOST} initiating on PORT: [{PORT}]')
 	s.bind((HOST, PORT))
