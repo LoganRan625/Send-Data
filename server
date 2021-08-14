@@ -1,7 +1,6 @@
 #!/bin/python3
 
 import socket
-import os
 import sys
 
 HOST = '127.0.0.1'
