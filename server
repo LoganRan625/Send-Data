@@ -1,0 +1,31 @@
+#!/bin/python3
+
+import socket
+import os
+import sys
+
+HOST = '127.0.0.1'
+PORT = 65432
+
+try:
+	filename = sys.argv[1]
+except:
+	filename = "file.txt"
+
+print(filename)
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+	print(f'[LISTENING] SERVER: {HOST} initiating on PORT: [{PORT}]')
+	s.bind((HOST, PORT))
+	s.listen()
+	conn, addr = s.accept()
+	with conn:
+		print(f"[CONNECTED] {addr}, {PORT}")
+		# recieving info
+		data = conn.recv(50024).decode('utf-8')
+		if data:
+			print("[RECIEVED] data ")
+			with open(filename, 'w') as f:
+				f.write(data)
+				print(f"data has been written to {filename}.\nto name file add name as argument when running server")
+			conn.close()
